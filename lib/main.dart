@@ -104,18 +104,21 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
         context: ctx,
         builder: (bctx) {
-          return GestureDetector(
-            child: NewTransaction(_addNewTransaction),
-            onTap: () {},
-            //behavior: HitTestBehavior.opaque,
-          );
+          // return GestureDetector(
+          //   child: NewTransaction(_addNewTransaction),
+          //   onTap: () {},
+          // );
+          return NewTransaction(_addNewTransaction);
         });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('Build MyHomepage');
+
     final _isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
+
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text('Personal Expenses'),
@@ -145,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
           1,
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
+
     final pageBody = SafeArea(
       child: SingleChildScrollView(
         child: Column(
